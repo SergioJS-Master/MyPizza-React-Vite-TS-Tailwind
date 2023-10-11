@@ -1,15 +1,17 @@
+import { Outlet } from 'react-router-dom'
 import './App.css'
+import { Header } from './Components/Header/Header'
+import { Footer } from './Components/Footer/Footer'
+
 
 function App() {
 
 
   return (
     <>
-    <div className='bg-[#F44336] w-[100%] h-[100%]'>
-      <h1 className="text-red text-[120px] font-bold ">
-        Hello world!
-      </h1>
-    </div>
+    <Header />
+    <Outlet />
+    <Footer />
     </>
   )
 }
