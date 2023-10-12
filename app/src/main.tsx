@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { FormAddPizzas } from './Components/Pages/FormAddPizzas/FormAddPizzas.tsx'
 import { DetailPizza } from './Components/Pages/DetailPizza/DetailPizza.tsx'
+import "tw-elements-react/dist/css/tw-elements-react.min.css";
 
 
 const router = createBrowserRouter(
