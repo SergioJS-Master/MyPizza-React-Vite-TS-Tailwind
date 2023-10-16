@@ -1,6 +1,6 @@
 export function Main () {
     return (
-        <div>
+        <div className="h-[100vh]">
             MAIN
         </div>
     )
