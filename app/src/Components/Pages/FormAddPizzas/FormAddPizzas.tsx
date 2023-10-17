@@ -1,43 +1,73 @@
-import React, {FC, useState} from 'react';
+import React, { FC, useState } from 'react';
 import { TEInput, TERipple } from 'tw-elements-react';
+import Pizza from '../../../models/Pizza'
+
+
+
+// interface AddPizzaForm {
+//   addPizza: (newPizza: Pizza) => void
+// }
 
 const initState = {
   title: '',
   price: '',
   img: '',
-}
+};
 
 
- const FormAddPizzas: FC = () => {
-  const [newPizza, setNewPizza] = useState<{title: string, price: string, img: string}>(initState)
+//FormAddPizzas --- Component
+const FormAddPizzas: FC = () => {
+
+  const [pizzasList, setPizzasList] = useState<Pizza[]>([])
+  const [newPizza, setNewPizza] = useState<{
+    title: string;
+    price: string;
+    img: string;
+  }>(initState);
+
+  
+  
+  const addPizza = (newPizza: Pizza) => {
+    setPizzasList([...pizzasList, newPizza])
+  }
+  
+  console.log('pizzasList>>>', pizzasList);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, value} = e.target
-    
+    const { name, value } = e.target;
+
     setNewPizza({
       ...newPizza,
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
-    e.preventDefault()
-    console.log('HC>>', e.target); 
-  }
+    e.preventDefault();
+    const {title, price, img} = newPizza
 
-  console.log('new pizza>>>', newPizza);
-  
+    if (title && price && img) {
+      addPizza({
+        title,
+        img,
+        price: Number(price),
+        id: Date.now()
+      })
+      setNewPizza(initState)
+    }
+  };
+
+  // console.log('new pizza>>>', newPizza);
 
   return (
     <div className="flex justify-center items-center h-[100vh]">
-      <div className='flex flex-col items-center'>
+      <div className="flex flex-col items-center">
         <h1>MYPizza</h1>
         <div className="block max-w-sm rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-4">
-
               <TEInput
-                name='title'
+                name="title"
                 type="text"
                 label="Название"
                 className="mb-6"
@@ -46,7 +76,7 @@ const initState = {
               ></TEInput>
 
               <TEInput
-                name='price'
+                name="price"
                 type="text"
                 label="Стоимость"
                 className="mb-6 bg-red-600"
@@ -56,7 +86,7 @@ const initState = {
             </div>
 
             <TEInput
-              name='img'
+              name="img"
               type="text"
               label="Изображение"
               className="mb-6"
@@ -85,7 +115,6 @@ const initState = {
       </div>
     </div>
   );
-}
+};
 
-
-export default FormAddPizzas
+export default FormAddPizzas;
