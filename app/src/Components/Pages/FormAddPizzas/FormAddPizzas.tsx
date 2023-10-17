@@ -1,8 +1,7 @@
 import React, { FC, useState } from 'react';
 import { TEInput, TERipple } from 'tw-elements-react';
-import Pizza from '../../../models/Pizza'
-
-
+import Pizza from '../../../models/Pizza';
+import DisplayPizzas from '../DisplayPizzas/DisplayPizzas';
 
 // interface AddPizzaForm {
 //   addPizza: (newPizza: Pizza) => void
@@ -14,23 +13,19 @@ const initState = {
   img: '',
 };
 
-
 //FormAddPizzas --- Component
 const FormAddPizzas: FC = () => {
-
-  const [pizzasList, setPizzasList] = useState<Pizza[]>([])
+  const [pizzasList, setPizzasList] = useState<Pizza[]>([]);
   const [newPizza, setNewPizza] = useState<{
     title: string;
     price: string;
     img: string;
   }>(initState);
 
-  
-  
   const addPizza = (newPizza: Pizza) => {
-    setPizzasList([...pizzasList, newPizza])
-  }
-  
+    setPizzasList([...pizzasList, newPizza]);
+  };
+
   console.log('pizzasList>>>', pizzasList);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,16 +39,16 @@ const FormAddPizzas: FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
-    const {title, price, img} = newPizza
+    const { title, price, img } = newPizza;
 
     if (title && price && img) {
       addPizza({
         title,
         img,
         price: Number(price),
-        id: Date.now()
-      })
-      setNewPizza(initState)
+        id: Date.now(),
+      });
+      setNewPizza(initState);
     }
   };
 
@@ -112,6 +107,7 @@ const FormAddPizzas: FC = () => {
             </TERipple>
           </form>
         </div>
+        <DisplayPizzas pizzasList={pizzasList}/>
       </div>
     </div>
   );
