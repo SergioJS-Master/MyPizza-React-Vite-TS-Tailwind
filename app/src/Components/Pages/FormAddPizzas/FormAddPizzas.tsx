@@ -59,7 +59,7 @@ const FormAddPizzas: FC = () => {
       <div className="flex flex-col items-center">
         <h1>MYPizza</h1>
         <div className="block max-w-sm rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className='relative z-1'>
             <div className="grid grid-cols-2 gap-4">
               <TEInput
                 name="title"

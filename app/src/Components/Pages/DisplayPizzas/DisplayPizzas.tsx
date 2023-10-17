@@ -1,5 +1,6 @@
 import { FC } from "react"
 import Pizza from "../../../models/Pizza"
+import SinglePizzas from "../../SinglePizza/SinglePizzas"
 
 interface DisplayPizzasProps {
     pizzasList: Pizza[]
@@ -8,12 +9,8 @@ interface DisplayPizzasProps {
 const DisplayPizzas: FC<DisplayPizzasProps> = ({pizzasList}) => {
     return (
         <div className="">
-            {pizzasList.map((pz) => {
-                return (
-                 <div className="flex flex-col items-center">
-                     <h1>{pz.title}</h1>
-                 </div>   
-                )
+            {pizzasList.map((pizza) => {
+                return <SinglePizzas key={pizza.id} pizza={pizza}/>
              
             })}
         </div>
