@@ -1,73 +1,23 @@
-import React, { FC, useState } from 'react';
+import { FC } from "react";
 import { TEInput, TERipple } from 'tw-elements-react';
-import Pizza from '../../../models/Pizza';
-import DisplayPizzas from '../DisplayPizzas/DisplayPizzas';
+import Pizza from "../../../models/Pizza"
 
-// interface AddPizzaForm {
-//   addPizza: (newPizza: Pizza) => void
-// }
+interface SinglePizzaFormProps {
+    pizza: Pizza
+}
 
-const initState = {
-  title: '',
-  price: '',
-  img: '',
-};
-
-//FormAddPizzas --- Component
-const FormAddPizzas: FC = () => {
-  const [pizzasList, setPizzasList] = useState<Pizza[]>([]);
-  const [newPizza, setNewPizza] = useState<{
-    title: string;
-    price: string;
-    img: string;
-  }>(initState);
-
-  const addPizza = (newPizza: Pizza) => {
-    setPizzasList([...pizzasList, newPizza]);
-  };
-
-  console.log('pizzasList>>>', pizzasList);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    setNewPizza({
-      ...newPizza,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
-    e.preventDefault();
-    const { title, price, img } = newPizza;
-
-    if (title && price && img) {
-      addPizza({
-        title,
-        img,
-        price: Number(price),
-        id: Date.now(),
-      });
-      setNewPizza(initState);
-    }
-  };
-
-  // console.log('new pizza>>>', newPizza);
-
-  return (
-    <div className="flex justify-center items-center h-[100vh]">
-      <div className="flex flex-col items-center">
-        <h1>MYPizza</h1>
-        <div className="block max-w-sm rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 relative z-1">
-          <form onSubmit={handleSubmit} className=''>
+const FormEditPizza: FC<SinglePizzaFormProps> = ({pizza}) => {
+    return (
+        <div className="block max-w-sm rounded-lg bg-white p-[50px] shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+          <form  className='relative z-1'>
             <div className="grid grid-cols-2 gap-4">
               <TEInput
                 name="title"
                 type="text"
                 label="Название"
                 className="mb-6"
-                onChange={handleChange}
-                value={newPizza.title}
+                // onChange={handleChange}
+                value={pizza.title}
               ></TEInput>
 
               <TEInput
@@ -75,8 +25,8 @@ const FormAddPizzas: FC = () => {
                 type="text"
                 label="Стоимость"
                 className="mb-6 bg-red-600"
-                onChange={handleChange}
-                value={newPizza.price}
+                // onChange={handleChange}
+                value={pizza.price}
               ></TEInput>
             </div>
 
@@ -85,8 +35,8 @@ const FormAddPizzas: FC = () => {
               type="text"
               label="Изображение"
               className="mb-6"
-              onChange={handleChange}
-              value={newPizza.img}
+            //   onChange={handleChange}
+              value={pizza.img}
             ></TEInput>
 
             {/* <!--Submit button--> */}
@@ -107,10 +57,7 @@ const FormAddPizzas: FC = () => {
             </TERipple>
           </form>
         </div>
-        <DisplayPizzas pizzasList={pizzasList}/>
-      </div>
-    </div>
-  );
-};
+    )
+}
 
-export default FormAddPizzas;
+export default FormEditPizza
