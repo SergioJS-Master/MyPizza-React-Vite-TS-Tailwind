@@ -5,7 +5,7 @@ export function Footer () {
                 <h1 className="text-[24px] text-white">MyPizza</h1>
             </div>
             <div>
-                <a className="text-[24px] text-white" href="https://github.com/SergioJS-Master">GitHub</a>
+                <a className="text-[24px] text-white" target="_blank" href="https://github.com/SergioJS-Master">GitHub</a>
             </div>
             <div>
                 <h1 className="text-[24px] text-white">2023 г.</h1>

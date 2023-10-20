@@ -7,7 +7,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { DetailPizza } from './Components/Pages/DetailPizza/DetailPizza.tsx'
+import DetailPizza from './Components/Pages/DetailPizza/DetailPizza.tsx'
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
 import FormAddPizzas from './Components/Pages/FormAddPizzas/FormAddPizzas.tsx'
 
@@ -34,7 +34,6 @@ const router = createBrowserRouter(
       ],
     },
   ],
-  // { basename: '/DogShopReact/' },
 )
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
