@@ -1,23 +1,47 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { TEInput, TERipple } from 'tw-elements-react';
 import Pizza from "../../../models/Pizza"
 
+
 interface SinglePizzaFormProps {
     pizza: Pizza
+    updatePizza: (newPizza: Pizza) => void
+    closeHandler: () => void
 }
 
-const FormEditPizza: FC<SinglePizzaFormProps> = ({pizza}) => {
+const FormEditPizza: FC<SinglePizzaFormProps> = ({pizza, updatePizza, closeHandler}) => {
+  const [editPizza, serEditPizza] = useState<Pizza>(pizza)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = e.target
+
+    serEditPizza({
+      ...editPizza,
+      [name]: value
+    })
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
+    e.preventDefault();
+    const { title, price, img } = editPizza;
+
+    if (title && price && img) {
+      updatePizza(editPizza)
+      closeHandler()
+    }
+  };
+
     return (
         <div className="block max-w-sm rounded-lg bg-white p-[50px] shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
-          <form  className='relative z-1'>
+          <form onSubmit={handleSubmit} className='relative z-1'>
             <div className="grid grid-cols-2 gap-4">
               <TEInput
                 name="title"
                 type="text"
                 label="Название"
                 className="mb-6"
-                // onChange={handleChange}
-                value={pizza.title}
+                onChange={handleChange}
+                value={editPizza.title}
               ></TEInput>
 
               <TEInput
@@ -25,8 +49,8 @@ const FormEditPizza: FC<SinglePizzaFormProps> = ({pizza}) => {
                 type="text"
                 label="Стоимость"
                 className="mb-6 bg-red-600"
-                // onChange={handleChange}
-                value={pizza.price}
+                onChange={handleChange}
+                value={editPizza.price}
               ></TEInput>
             </div>
 
@@ -35,8 +59,8 @@ const FormEditPizza: FC<SinglePizzaFormProps> = ({pizza}) => {
               type="text"
               label="Изображение"
               className="mb-6"
-            //   onChange={handleChange}
-              value={pizza.img}
+              onChange={handleChange}
+              value={editPizza.img}
             ></TEInput>
 
             {/* <!--Submit button--> */}
@@ -52,7 +76,7 @@ const FormEditPizza: FC<SinglePizzaFormProps> = ({pizza}) => {
                 dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] 
                 dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]]"
               >
-                Добавить в меню
+                Принять изменения
               </button>
             </TERipple>
           </form>
