@@ -26,6 +26,10 @@ const FormAddPizzas: FC = () => {
     setPizzasList([...pizzasList, newPizza]);
   };
 
+  const updatePizza = (newPizza: Pizza) => {
+    setPizzasList(pizzasList.map((pizza) => (pizza.id === newPizza.id ? newPizza : pizza)));
+  };
+
   console.log('pizzasList>>>', pizzasList);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -107,7 +111,10 @@ const FormAddPizzas: FC = () => {
             </TERipple>
           </form>
         </div>
-        <DisplayPizzas pizzasList={pizzasList}/>
+        <DisplayPizzas 
+          pizzasList={pizzasList}
+          updatePizza={updatePizza}
+           />
       </div>
     </div>
   );

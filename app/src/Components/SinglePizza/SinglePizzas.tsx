@@ -6,10 +6,11 @@ import FormEditPizza from "../Pages/FormEditPizza/FormEditPizza"
 import DetailPizza from "../Pages/DetailPizza/DetailPizza"
 
 interface SinglePizzasProps {
-    pizza: Pizza
+    pizza: Pizza;
+    updatePizza: (newPizza: Pizza) => void
 }
 
-const SinglePizzas: FC<SinglePizzasProps> = ({pizza}) => {
+const SinglePizzas: FC<SinglePizzasProps> = ({pizza, updatePizza}) => {
     const [isOpenModalEdit, setIsOpenModalEdit] = useState<boolean>(false)
     const [isOpenModalDetail, setIsOpenModalDetail] = useState<boolean>(false)
 
@@ -37,7 +38,11 @@ const SinglePizzas: FC<SinglePizzasProps> = ({pizza}) => {
                 <AiFillDelete size='25' color='black'/>
             </div>
             <Modal isOpen={isOpenModalEdit} closeHandler={closeModalEdit}>
-                <FormEditPizza pizza={pizza}/>
+                <FormEditPizza 
+                    pizza={pizza}
+                    updatePizza={updatePizza}
+                    closeHandler={closeModalEdit}
+                    />
             </Modal>
             <Modal isOpen={isOpenModalDetail} closeHandler={closeModalDetailPizza}>
                 <DetailPizza pizzaData={pizza}/>
