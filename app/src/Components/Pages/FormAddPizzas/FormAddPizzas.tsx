@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { TEInput, TERipple } from 'tw-elements-react';
 import Pizza from '../../../models/Pizza';
 import DisplayPizzas from '../DisplayPizzas/DisplayPizzas';
@@ -23,18 +23,32 @@ const FormAddPizzas: FC = () => {
   }>(initState);
 
   const addPizza = (newPizza: Pizza) => {
-    setPizzasList([...pizzasList, newPizza]);
+    const newPizzasList = [...pizzasList, newPizza]
+    setPizzasList(newPizzasList);
+    
+    localStorage.setItem('pizzasState', JSON.stringify(newPizzasList))
   };
 
   const updatePizza = (newPizza: Pizza) => {
-    setPizzasList(pizzasList.map((pizza) => (pizza.id === newPizza.id ? newPizza : pizza)));
+    const newPizzasList = pizzasList.map((pizza) => (pizza.id === newPizza.id ? newPizza : pizza))
+    setPizzasList(newPizzasList);
+    
+    localStorage.setItem('pizzasState', JSON.stringify(newPizzasList))
   };
 
   const deletePizza = (id: number) => {
     const newPizzasList = pizzasList.filter((pizza) => pizza.id !== id) 
     setPizzasList(newPizzasList)
+
+    localStorage.setItem('pizzasState', JSON.stringify(newPizzasList))
   }
-  console.log('pizzasList>>>', pizzasList);
+
+  useEffect(() => {
+    const pizzasState = localStorage.getItem('pizzasState')
+    if (pizzasState) {
+      setPizzasList(JSON.parse(pizzasState))
+    }
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
