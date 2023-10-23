@@ -8,11 +8,16 @@ import DetailPizza from "../Pages/DetailPizza/DetailPizza"
 interface SinglePizzasProps {
     pizza: Pizza;
     updatePizza: (newPizza: Pizza) => void
+    deletePizza: (id: number) => void
 }
 
-const SinglePizzas: FC<SinglePizzasProps> = ({pizza, updatePizza}) => {
+const SinglePizzas: FC<SinglePizzasProps> = ({pizza, updatePizza, deletePizza}) => {
     const [isOpenModalEdit, setIsOpenModalEdit] = useState<boolean>(false)
     const [isOpenModalDetail, setIsOpenModalDetail] = useState<boolean>(false)
+
+    const handleDelete = () => {
+        deletePizza(pizza.id)
+    }
 
     const closeModalEdit = () => {
         setIsOpenModalEdit(false)
@@ -35,7 +40,7 @@ const SinglePizzas: FC<SinglePizzasProps> = ({pizza, updatePizza}) => {
             <p className="font-semibold">{pizza.price}<span>Rub</span> </p>
             <div className="flex justify-between">
                 <AiFillEdit onClick={openModalEdit} size='25' color='black'/>
-                <AiFillDelete size='25' color='black'/>
+                <AiFillDelete onClick={handleDelete} size='25' color='black'/>
             </div>
             <Modal isOpen={isOpenModalEdit} closeHandler={closeModalEdit}>
                 <FormEditPizza 
