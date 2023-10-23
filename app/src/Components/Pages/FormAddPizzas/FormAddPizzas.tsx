@@ -30,6 +30,10 @@ const FormAddPizzas: FC = () => {
     setPizzasList(pizzasList.map((pizza) => (pizza.id === newPizza.id ? newPizza : pizza)));
   };
 
+  const deletePizza = (id: number) => {
+    const newPizzasList = pizzasList.filter((pizza) => pizza.id !== id) 
+    setPizzasList(newPizzasList)
+  }
   console.log('pizzasList>>>', pizzasList);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +63,7 @@ const FormAddPizzas: FC = () => {
   // console.log('new pizza>>>', newPizza);
 
   return (
-    <div className="flex justify-center items-center h-[100vh]">
+    <div className="flex justify-center items-center min-h-[100vh] h-auto">
       <div className="flex flex-col items-center">
         <h1>MYPizza</h1>
         <div className="block max-w-sm rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 relative z-1">
@@ -112,6 +116,7 @@ const FormAddPizzas: FC = () => {
           </form>
         </div>
         <DisplayPizzas 
+          deletePizza={deletePizza}
           pizzasList={pizzasList}
           updatePizza={updatePizza}
            />

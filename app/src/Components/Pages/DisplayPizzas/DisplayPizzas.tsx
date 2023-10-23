@@ -5,9 +5,10 @@ import SinglePizzas from '../../SinglePizza/SinglePizzas';
 interface DisplayPizzasProps {
   pizzasList: Pizza[];
   updatePizza: (newPizza: Pizza) => void;
+  deletePizza: (id: number) => void
 }
 
-const DisplayPizzas: FC<DisplayPizzasProps> = ({ pizzasList, updatePizza }) => {
+const DisplayPizzas: FC<DisplayPizzasProps> = ({ pizzasList, updatePizza, deletePizza }) => {
   return (
     <>
     <div>
@@ -19,6 +20,7 @@ const DisplayPizzas: FC<DisplayPizzasProps> = ({ pizzasList, updatePizza }) => {
       {pizzasList.map((pizza) => {
         return (
           <SinglePizzas
+            deletePizza={deletePizza}
             key={pizza.id}
             pizza={pizza}
             updatePizza={updatePizza}
