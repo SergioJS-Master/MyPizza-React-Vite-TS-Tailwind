@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 export function Header() {
     return (
@@ -8,9 +8,9 @@ export function Header() {
                 </Link>
             <div className="flex gap-4 items-center">
                 <h1 className="text-white text-[20px]">О нас</h1>
-                <Link to='menu'>
-                    <h1 className="text-white text-[20px] opacity-100">Меню</h1>
-                </Link>
+                <NavLink className={({isActive}) => isActive ? 'text-amber-500' : 'text-white'} to='menu'>
+                    <h1 className='text-[20px] '>Меню</h1>
+                </NavLink>
             </div>
         </header>
     )
