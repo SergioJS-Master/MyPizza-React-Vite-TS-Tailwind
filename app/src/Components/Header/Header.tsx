@@ -7,7 +7,9 @@ export function Header() {
                     <h1 className='text-[20px] opacity-100'>My PIZZA</h1>
                 </Link>
             <div className="flex gap-4 items-center">
-                <h1 className="text-white text-[20px]">О нас</h1>
+                <NavLink className={({isActive}) => isActive ? 'text-amber-500' : 'text-white'} to='about'>
+                    <h1 className='text-[20px] '>О нас</h1>
+                </NavLink>
                 <NavLink className={({isActive}) => isActive ? 'text-amber-500' : 'text-white'} to='menu'>
                     <h1 className='text-[20px] '>Меню</h1>
                 </NavLink>
