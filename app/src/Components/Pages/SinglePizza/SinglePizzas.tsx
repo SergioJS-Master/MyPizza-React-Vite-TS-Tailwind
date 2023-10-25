@@ -1,8 +1,8 @@
 import { FC, useState } from "react"
-import Pizza from "../../models/Pizza"
+import Pizza from "../../../models/Pizza"
 import {AiFillEdit, AiFillDelete} from 'react-icons/ai'
-import Modal from "../Pages/Modal/Modal"
-import FormEditPizza from "../Pages/FormEditPizza/FormEditPizza"
+import Modal from "../Modal/Modal"
+import FormEditPizza from "../FormEditPizza/FormEditPizza"
 // import DetailPizza from "../Pages/DetailPizza/DetailPizza"
 import { Link } from "react-router-dom"
 

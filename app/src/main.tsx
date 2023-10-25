@@ -10,6 +10,7 @@ import {
 import DetailPizza from './Components/Pages/DetailPizza/DetailPizza.tsx'
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
 import FormAddPizzas from './Components/Pages/FormAddPizzas/FormAddPizzas.tsx'
+import About from './Components/Pages/About/About.tsx'
 
 
 
@@ -30,6 +31,10 @@ const router = createBrowserRouter(
         {
           path: 'menu/:detailPizzaId',
           element: <DetailPizza />
+        },
+        {
+          path: 'about',
+          element: <About/>
         }
       ],
     },
