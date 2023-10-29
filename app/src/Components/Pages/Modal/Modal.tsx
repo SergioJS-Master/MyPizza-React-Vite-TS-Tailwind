@@ -1,7 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useEffect } from "react";
 import stylesModalWr from './Modal.module.css';
 import { createPortal } from "react-dom";
-// import ReactDOM from 'react-dom';
 
 interface ModalProps {
     isOpen: boolean;
@@ -21,7 +21,6 @@ const ModalInner: FC<ModalProps> =({ children, closeHandler }) => {
       return () => {
         document.removeEventListener('keydown', closeModalByEscape);
       };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
   
     return <div className={stylesModalWr.modalstyle}>{children}</div>;
