@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useEffect, useState } from "react"
 import Pizza from "../../../models/Pizza"
 import { useParams } from "react-router-dom";
@@ -23,7 +24,7 @@ const DetailPizza: FC = () => {
       }
     }, []);
   
-    console.log('detailPizzaId>>>', detailPizzaId);
+    // console.log('detailPizzaId>>>', detailPizzaId);
       
 
     return (
