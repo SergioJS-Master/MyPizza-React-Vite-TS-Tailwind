@@ -1,6 +1,7 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import Pizza from '../../../models/Pizza';
 import SinglePizzas from '../SinglePizza/SinglePizzas';
+import Pagination from '../Pagination/Pagination';
 
 interface DisplayPizzasProps {
   pizzasList: Pizza[];
@@ -9,6 +10,15 @@ interface DisplayPizzasProps {
 }
 
 const DisplayPizzas: FC<DisplayPizzasProps> = ({ pizzasList, updatePizza, deletePizza }) => {
+
+  const [currentPage, setCurrentPage] = useState <number>(1)
+  const [postsPerPage, serPostsPage] = useState <number>(3)
+
+  // console.log('>>>>>', pizzasList);
+  const lastPostIndex = currentPage * postsPerPage //переменная для индекса последнего поста
+  const firstPostIndex = lastPostIndex - postsPerPage //переменная для индекса первого поста 
+  const currentPosts = pizzasList.slice(firstPostIndex, lastPostIndex) //обрезание ненужных карточек на странице
+  
   return (
     <>
     <div>
@@ -16,8 +26,8 @@ const DisplayPizzas: FC<DisplayPizzasProps> = ({ pizzasList, updatePizza, delete
         <div className="border-t-4 border-red-700 rounded-full my-[20px] w-[450px]"></div>
       )}
     </div>
-    <div className="flex flex-col items-center">
-      {pizzasList.map((pizza) => {
+    <div className="flex items-center justify-center gap-14">
+      {currentPosts.map((pizza) => {
         return (
           <SinglePizzas
             deletePizza={deletePizza}
@@ -28,6 +38,7 @@ const DisplayPizzas: FC<DisplayPizzasProps> = ({ pizzasList, updatePizza, delete
         );
       })}
     </div>
+    <Pagination postsPerPage={postsPerPage} totalPosts={currentPosts.length}/>
     </>
   );
 };
