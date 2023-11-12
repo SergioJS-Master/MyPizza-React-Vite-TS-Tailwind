@@ -41,6 +41,9 @@ const SinglePizzas: FC<SinglePizzasProps> = ({pizza, updatePizza, deletePizza}) 
             </Link>
             <h2 className="font-semibold">{pizza.title}</h2>
             <p className="font-semibold">{pizza.price}<span>Rub</span> </p>
+            {
+                pizza.discount > 0 && <p className="font-semibold">Скидка: {pizza.discount}<span>%</span> </p>
+            }
             <div className="flex justify-between">
                 <AiFillEdit onClick={openModalEdit} size='25' color='black'/>
                 <AiFillDelete onClick={handleDelete} size='25' color='black'/>

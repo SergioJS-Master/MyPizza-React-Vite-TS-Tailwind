@@ -11,6 +11,7 @@ const initState = {
   title: '',
   price: '',
   img: '',
+  discount: ''
 };
 
 //FormAddPizzas --- Component
@@ -20,6 +21,7 @@ const FormAddPizzas: FC = () => {
     title: string;
     price: string;
     img: string;
+    discount: string
   }>(initState);
 
   const addPizza = (newPizza: Pizza) => {
@@ -61,13 +63,14 @@ const FormAddPizzas: FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
-    const { title, price, img } = newPizza;
+    const { title, price, img, discount } = newPizza;
 
-    if (title && price && img) {
+    if (title && price && img && discount) {
       addPizza({
         title,
         img,
         price: Number(price),
+        discount: Number(discount),
         id: Date.now(),
       });
       setNewPizza(initState);
@@ -101,6 +104,15 @@ const FormAddPizzas: FC = () => {
                 value={newPizza.price}
               ></TEInput>
             </div>
+
+            <TEInput
+              name="discount"
+              type="text"
+              label="Скидка"
+              className="mb-6 bg-red-600"
+              onChange={handleChange}
+              value={newPizza.discount}
+            ></TEInput>
 
             <TEInput
               name="img"

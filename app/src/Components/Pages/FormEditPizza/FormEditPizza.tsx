@@ -23,9 +23,9 @@ const FormEditPizza: FC<SinglePizzaFormProps> = ({pizza, updatePizza, closeHandl
 
   const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
-    const { title, price, img } = editPizza;
+    const { title, price, img, discount } = editPizza;
 
-    if (title && price && img) {
+    if (title && price && img && discount) {
       updatePizza(editPizza)
       closeHandler()
     }
@@ -53,6 +53,15 @@ const FormEditPizza: FC<SinglePizzaFormProps> = ({pizza, updatePizza, closeHandl
                 value={editPizza.price}
               ></TEInput>
             </div>
+
+            <TEInput
+              name="discount"
+              type="text"
+              label="Скидка"
+              className="mb-6"
+              onChange={handleChange}
+              value={editPizza.discount}
+            ></TEInput>
 
             <TEInput
               name="img"

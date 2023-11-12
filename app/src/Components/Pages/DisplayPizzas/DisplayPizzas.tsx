@@ -12,12 +12,13 @@ interface DisplayPizzasProps {
 const DisplayPizzas: FC<DisplayPizzasProps> = ({ pizzasList, updatePizza, deletePizza }) => {
 
   const [currentPage, setCurrentPage] = useState <number>(1)
-  const [postsPerPage, serPostsPage] = useState <number>(3)
+  const [postsPerPage] = useState <number>(3)
 
-  // console.log('>>>>>', pizzasList);
+
   const lastPostIndex = currentPage * postsPerPage //переменная для индекса последнего поста
   const firstPostIndex = lastPostIndex - postsPerPage //переменная для индекса первого поста 
   const currentPosts = pizzasList.slice(firstPostIndex, lastPostIndex) //обрезание ненужных карточек на странице
+  
   
   return (
     <>
@@ -38,7 +39,7 @@ const DisplayPizzas: FC<DisplayPizzasProps> = ({ pizzasList, updatePizza, delete
         );
       })}
     </div>
-    <Pagination postsPerPage={postsPerPage} totalPosts={currentPosts.length}/>
+    <Pagination postsPerPage={postsPerPage} totalPosts={pizzasList.length} setCurrentPage={setCurrentPage}/>
     </>
   );
 };
