@@ -39,7 +39,7 @@ const DisplayPizzas: FC<DisplayPizzasProps> = ({ pizzasList, updatePizza, delete
         );
       })}
     </div>
-    <Pagination postsPerPage={postsPerPage} totalPosts={pizzasList.length} setCurrentPage={setCurrentPage}/>
+    <Pagination postsPerPage={postsPerPage} totalPosts={pizzasList.length} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
     </>
   );
 };
